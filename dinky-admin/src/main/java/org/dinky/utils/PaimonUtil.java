@@ -57,6 +57,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -135,6 +136,9 @@ public class PaimonUtil {
                     DataType type = dataField.type();
                     String fieldName = StrUtil.toCamelCase(dataField.name());
                     Object fieldValue = ReflectUtil.getFieldValue(t, fieldName);
+                    if (fieldName.equals("cacheTime") && fieldValue == null) {
+                        fieldValue = new Date(System.currentTimeMillis());
+                    }
                     try {
                         // TODO BinaryWriter.write已被废弃，后续可以考虑改成这种方式
                         // BinaryWriter.createValueSetter(type).setValue(writer, i, fieldValue);
