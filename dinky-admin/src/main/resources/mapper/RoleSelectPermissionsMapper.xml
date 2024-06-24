@@ -12,16 +12,16 @@
         <where>
             1=1
             <if test='param.roleCode!=null and param.roleCode!=""'>
-                and b.role_code like "%${param.roleCode}%"
+                and b.role_code like CONCAT('%', #{param.roleCode}, '%')
             </if>
             <if test='param.roleName!=null and param.roleName!=""'>
-                and b.role_name like "%${param.roleName}%"
+                and b.role_name like CONCAT('%', #{param.roleName}, '%')
             </if>
             <if test='param.tableName!=null and param.tableName!=""'>
-                and a.table_name like "%${param.tableName}%"
+                and a.table_name like CONCAT('%', #{param.tableName}, '%')
             </if>
             <if test='param.expression!=null and param.expression!=""'>
-                and a.expression like "%${param.expression}%"
+                and a.expression like CONCAT('%', #{param.expression}, '%')
             </if>
             <if test='ew.sqlSegment!=null and ew.sqlSegment!="" and !ew.sqlSegment.startsWith(" ORDER BY")'>
                 and
@@ -36,7 +36,7 @@
         DELETE FROM dinky_row_permissions
         WHERE role_id IN
         <foreach collection="roleIds" item="item" open="(" separator="," close=")">
-            ${item}
+            #{item}
         </foreach>
     </delete>
 
@@ -51,7 +51,7 @@
         b.id = a.role_id
         and a.role_id IN
         <foreach collection="roleIds" item="item" open="(" separator="," close=")">
-            ${item}
+            #{item}
         </foreach>
         order by a.id asc
     </select>

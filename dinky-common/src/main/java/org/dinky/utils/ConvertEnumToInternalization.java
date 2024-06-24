@@ -48,7 +48,7 @@ public class ConvertEnumToInternalization {
         }
 
         try {
-            String path = "D:\\project\\dinky\\dinky-common\\src\\main\\resources\\";
+            String path = "D:\\source\\dinky\\dinky\\dinky-common\\src\\main\\resources\\";
 
             BufferedWriter codeFileWriter = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(path + "message_code.properties"), StandardCharsets.UTF_8));

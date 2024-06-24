@@ -32,10 +32,10 @@
         <where>
             1=1
             <if test='param.name!=null and param.name!=""'>
-                and a.name like "%${param.name}%"
+                and a.name like CONCAT('%', #{param.name}, '%')
             </if>
             <if test='param.description!=null and param.description!=""'>
-                and a.description like "%${param.description}%"
+                and a.description like CONCAT('%', #{param.description}, '%')
             </if>
             <if test='param.category!=null and param.category!=""'>
                 and a.category = #{param.category}
