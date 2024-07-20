@@ -43,6 +43,7 @@ public class Dinky {
 
     @SneakyThrows
     public static void main(String[] args) {
+        System.setProperty("HADOOP_USER_NAME","root");
         SpringApplication app = new SpringApplication(Dinky.class);
         app.run(args);
     }
